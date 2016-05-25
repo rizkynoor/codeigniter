@@ -8,12 +8,9 @@
 		<h1>Tabel Bookmark | Latihan crud</h1>
 		<h3>Tambah data baru</h3>
 	</center>
-	<form action="<?php echo base_url(). 'belajar/tambah_aksi'; ?>" method="post">
+	<form action="<?php echo base_url(). 'index.php/belajar/tambah_aksi'; ?>" method="post">
 		<table style="margin:20px auto;">
-			<tr>
-				<td>ID</td>
-				<td><input type="text" name="id"></td>
-			</tr>
+			
 			<tr>
 				<td>Title</td>
 				<td><input type="text" name="title"></td>

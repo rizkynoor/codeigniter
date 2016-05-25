@@ -6,7 +6,7 @@
 <body>
 <center>
 	<h1>Tabel Bookmark <br/> Login</h1>
-	<form action="<?php echo base_url('belajar/aksi_login'); ?>" method="post">		
+	<form action="<?php echo base_url('index.php/belajar/aksi_login'); ?>" method="post">		
 		<table>
 			<tr>
 				<td>Username</td>

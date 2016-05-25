@@ -12,6 +12,7 @@
 			<th>Title</th>
 			<th>Url</th>
 			<th>Description</th>
+			<th>Option</th>
 		</tr>
 		<?php foreach($tb_bookmark as $u){ ?>
 		<tr>
@@ -19,10 +20,14 @@
 			<td><?php echo $u->title ?></td>
 			<td><?php echo $u->url ?></td>
 			<td><?php echo $u->description ?></td>
+			<td>
+			<?php echo anchor('belajar/edit/'.$u->id,'Edit'); ?>
+			<?php echo anchor('belajar/hapus/'.$u->id,'Hapus'); ?>
+			</td>
 		</tr>
 		</center>
 		<?php } ?>
-		
 	</table>
 </body>
+	<a href="http://localhost/ci30/index.php/belajar/tambah">+ Tambah data...</a>
 </html>

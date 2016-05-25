@@ -9,8 +9,8 @@ class Belajar extends CI_Controller {
 		$this->load->model('m_login');
 		$this->load->helper('url'); //tes
 
-		if($this->session->userdata('status')!= "login"){
-			//redirect(base_url("login"));
+		if($this->session->userdata('status')!= "m_login"){
+			//redirect(base_url("index.php/belajar/tambah_aksi"));
 		}
 	}
  
@@ -24,13 +24,13 @@ class Belajar extends CI_Controller {
 	}
 
 	function tambah_aksi(){
-		$id = $this->input->post('id');
+		//$id = $this->input->post('id');
 		$title = $this->input->post('title');
 		$url = $this->input->post('url');
 		$description = $this->input->post('description');
 			
 			$data = array (
-				'id' => $id,
+				//'id' => $id,
 				'title' => $title,
 				'url' => $url,
 				'description' => $description
@@ -38,6 +38,40 @@ class Belajar extends CI_Controller {
 		$this->m_data->input_data($data, 'tb_bookmark');
 		redirect('belajar/bookmark');
 	}
+
+	function edit($id){
+		$where = array ('id' => $id);
+		$data['tb_bookmark'] = $this->m_data->edit_data($where,'tb_bookmark')->result();
+		$this->load->view('v_edit',$data);
+	}
+
+	function update(){
+		$id = $this->input->post('id');
+		$title = $this->input->post('title');
+		$url = $this->input->post('url');
+		$description = $this->input->post('description');
+ 
+		$data = array(
+		'title' => $title,
+		'url' => $url,
+		'description' => $description
+		);
+ 
+		$where = array(
+		'id' => $id
+		);
+ 
+		$this->m_data->update_data($where,$data,'tb_bookmark');
+	redirect('belajar/bookmark');
+	}
+
+
+	function hapus($id){
+		$where = array ('id' => $id);
+		$this->m_data->hapus_data($where,'tb_bookmark');
+		redirect('belajar/bookmark');
+	}
+
 
 	//session Login!!
 
@@ -50,16 +84,16 @@ class Belajar extends CI_Controller {
 		$password = $this->input->post('password');
 		$where = array (
 			'username' => $username,
-			'password' => md5($password)
+			'password' => $password
 			);
 		$cek = $this->m_login->cek_login("tb_user",$where)->num_rows();
 		if ($cek > 0) {
 				$data_session = array(
 					'nama' => $username,
-					'status' => "login"
+					'status' => "m_login"
 					); 
 		$this->session->set_userdata($data_session);
-		redirect (base_url("tb_user"));
+		redirect (base_url("index.php/belajar/tambah_aksi"));
 		} else {
 			echo "Username atau Password Salah!";
 			} 
