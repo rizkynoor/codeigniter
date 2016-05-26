@@ -19,6 +19,7 @@ class Belajar extends CI_Controller {
 		$this->load->view('v_bookmark.php',$data);
 	}
 
+
 	function tambah(){
 		$this->load->view('v_input'); //contoh tambah
 	}
@@ -77,6 +78,7 @@ class Belajar extends CI_Controller {
 
 	function login(){
 		$this->load->view('v_login'); //contoh login
+
 	}
 
 	function aksi_login(){
@@ -95,8 +97,9 @@ class Belajar extends CI_Controller {
 		$this->session->set_userdata($data_session);
 		redirect (base_url("index.php/belajar/bookmark"));
 		} else {
-			echo "Username atau Password Salah!";
-			} 
+			echo '<script>alert("Username atau Password Salah!");</script>' ;
+			
+			}
 	}
 
 	function logout(){

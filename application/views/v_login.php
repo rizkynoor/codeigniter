@@ -24,7 +24,7 @@
 
 			<tr>
 				<td></td>
-				<td><input type="submit" value="Login"></td>
+				<td><input class="button" type="submit" value="Login"></td>
 			</tr>
 
 		</table>

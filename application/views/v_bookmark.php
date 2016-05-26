@@ -45,6 +45,6 @@
 	</div>
 	</div>
 </body>
-			<a class="add"	href="<?php echo base_url('index.php/belajar/tambah'); ?>">+ Tambah Data...</a>
+			<a class="add"	href="<?php echo base_url('index.php/belajar/tambah'); ?>"> Tambah Data...</a>
 		
 </html>
