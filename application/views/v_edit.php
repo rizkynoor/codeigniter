@@ -5,7 +5,7 @@
 </head>
 <body>
 	<center>
-		<h1>Tabel Bookmark</h1>
+		<h1>Tabel Bookmark | Latihan crud</h1>
 		<h3>Edit Data</h3>
 	</center>
 	<?php foreach($tb_bookmark as $u){ ?>

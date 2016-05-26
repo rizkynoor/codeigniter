@@ -5,7 +5,7 @@
 </head>
 <body>
 <center>
-	<h1>Tabel Bookmark <br/> Login</h1>
+	<h1>Tabel Bookmark | Latihan crud <br/> Login</h1>
 	<form action="<?php echo base_url('index.php/belajar/aksi_login'); ?>" method="post">		
 		<table>
 			<tr>

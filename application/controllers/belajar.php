@@ -10,9 +10,10 @@ class Belajar extends CI_Controller {
 		$this->load->helper('url'); //tes
 
 		if($this->session->userdata('status')!= "m_login"){
-			//redirect(base_url("index.php/belajar/tambah_aksi"));
+			redirect(base_url("index.php/belajar/login"));
 		}
 	}
+
  
 	function bookmark(){
 		$data['tb_bookmark'] = $this->m_data->ambil_data()->result(); //contoh 'user'
@@ -93,7 +94,7 @@ class Belajar extends CI_Controller {
 					'status' => "m_login"
 					); 
 		$this->session->set_userdata($data_session);
-		redirect (base_url("index.php/belajar/tambah_aksi"));
+		redirect (base_url("index.php/belajar/bookmark"));
 		} else {
 			echo "Username atau Password Salah!";
 			} 
@@ -101,7 +102,7 @@ class Belajar extends CI_Controller {
 
 	function logout(){
 		$this->session->session_destroy();
-		redirect (base_url('login'));
+		redirect (base_url('index.php/belajar/login/logout'));
 	}
  
 }

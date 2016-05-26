@@ -29,5 +29,6 @@
 		<?php } ?>
 	</table>
 </body>
-	<a href="http://localhost/ci30/index.php/belajar/tambah">+ Tambah data...</a>
+			<a href="<?php echo base_url('index.php/belajar/tambah'); ?>">+ Tambah Data...</a>
+		<a href="<?php echo base_url('index.php/belajar/login/logout'); ?>">Logout</a>
 </html>
