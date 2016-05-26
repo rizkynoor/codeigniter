@@ -13,7 +13,6 @@ class Belajar extends CI_Controller {
 			redirect(base_url("index.php/belajar/login"));
 		}
 	}
-
  
 	function bookmark(){
 		$data['tb_bookmark'] = $this->m_data->ambil_data()->result(); //contoh 'user'

@@ -2,11 +2,18 @@
 <html>
 <head>
 	<title>Tabel Bookmark</title>
+	<link href="<?php echo base_url(); ?>res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
+	<div class="content">
 	<center>
 	<h1>Tabel Bookmark | Latihan crud</h1>
-	<table border="1">
+	<h3>Data Tabel Bookmark</h3>
+	<div class="paging">
+	<div class="data">
+
+	<table>
+	
 		<tr>
 			<th>ID</th>
 			<th>Title</th>
@@ -16,19 +23,28 @@
 		</tr>
 		<?php foreach($tb_bookmark as $u){ ?>
 		<tr>
+
 			<td><?php echo $u->id ?></td>
-			<td><?php echo $u->title ?></td>
-			<td><?php echo $u->url ?></td>
-			<td><?php echo $u->description ?></td>
+			<td valign="top"><?php echo $u->title ?></td>
+			<td valign="top"><?php echo $u->url ?></td>
+			<td valign="top"><?php echo $u->description ?></td>
 			<td>
+			<a class="update">
 			<?php echo anchor('belajar/edit/'.$u->id,'Edit'); ?>
+			</a>
+			<a class="delete">
 			<?php echo anchor('belajar/hapus/'.$u->id,'Hapus'); ?>
+			</a>
 			</td>
 		</tr>
+		</div>
 		</center>
 		<?php } ?>
+		
 	</table>
+	</div>
+	</div>
 </body>
-			<a href="<?php echo base_url('index.php/belajar/tambah'); ?>">+ Tambah Data...</a>
-		<a href="<?php echo base_url('index.php/belajar/login/logout'); ?>">Logout</a>
+			<a class="add"	href="<?php echo base_url('index.php/belajar/tambah'); ?>">+ Tambah Data...</a>
+		
 </html>
