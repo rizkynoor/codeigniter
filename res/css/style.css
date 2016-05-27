@@ -114,7 +114,7 @@ a.view {
 a.back {
 	background:url(images/prev.gif) left center no-repeat;
 }
-a.update:hover, a.delete:hover, a.add:hover, a.view:hover {
+a.update:hover, a.delete:hover, a.add:hover, a.view:hover, a.back:hover {
 	color:#000;
 }
 

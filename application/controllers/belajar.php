@@ -6,20 +6,26 @@ class Belajar extends CI_Controller {
 	function __construct(){
 		parent::__construct();		
 		$this->load->model('m_data');
-		$this->load->model('m_login');
+		$this->load->model('m_data_user');
+		//$this->load->model('m_login');
 		$this->load->helper('url'); //tes
-
-		if($this->session->userdata('status')!= "m_login"){
-			redirect(base_url("index.php/belajar/login"));
-		}
+		$this->load->library('session');
+		
+		if($this->session->userdata('status') != "m_login"){
+		redirect(base_url("login"));
 	}
- 
-	function bookmark(){
+}
+	
+	
+
+/*-----------------------------BOOKMARK---------------------------*/
+
+	 function bookmark(){
 		$data['tb_bookmark'] = $this->m_data->ambil_data()->result(); //contoh 'user'
-		$this->load->view('v_bookmark.php',$data);
+		$this->load->view('v_bookmark',$data);
 	}
 
-
+//
 	function tambah(){
 		$this->load->view('v_input'); //contoh tambah
 	}
@@ -31,12 +37,11 @@ class Belajar extends CI_Controller {
 		$description = $this->input->post('description');
 			
 			$data = array (
-				//'id' => $id,
+				'id' => $id,
 				'title' => $title,
 				'url' => $url,
-				'description' => $description
-				);
-		$this->m_data->input_data($data, 'tb_bookmark');
+				'description' => $description);
+		$this->m_data->input_data($data,'tb_bookmark');
 		redirect('belajar/bookmark');
 	}
 
@@ -53,9 +58,9 @@ class Belajar extends CI_Controller {
 		$description = $this->input->post('description');
  
 		$data = array(
-		'title' => $title,
-		'url' => $url,
-		'description' => $description
+			'title' => $title,
+			'url' => $url,
+			'description' => $description
 		);
  
 		$where = array(
@@ -63,20 +68,79 @@ class Belajar extends CI_Controller {
 		);
  
 		$this->m_data->update_data($where,$data,'tb_bookmark');
-	redirect('belajar/bookmark');
+		redirect('belajar/bookmark');
 	}
 
 
 	function hapus($id){
 		$where = array ('id' => $id);
 		$this->m_data->hapus_data($where,'tb_bookmark');
-		redirect('belajar/bookmark');
+		redirect('belajar/bookmark'); 
+	}
+/*-----------------------------BOOKMARK---------------------------*/
+						//end
+
+/*-----------------------------USER---------------------------*/
+
+	 function user(){
+		$data['tb_user'] = $this->m_data_user->tampil_data()->result(); //contoh 'user'
+		$this->load->view('v_menu_user',$data);
+	}
+
+	function tambahuser(){
+		$this->load->view('v_input_user'); //contoh tambah
+	}
+
+	function tambahuser_aksi(){
+		//$id = $this->input->post('id');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+			
+			$data = array (
+				'id' => $id,
+				'username' => $username,
+				'password' => $password );
+		$this->m_data_user->input_data($data,'tb_user');
+		redirect('belajar/user');
+	}
+
+	function edituser($id){
+		$where = array ('id' => $id);
+		$data['tb_user'] = $this->m_data_user->edit_data($where,'tb_user')->result();
+		$this->load->view('v_edit_user',$data);
+	}
+
+	function updateuser(){
+		$id = $this->input->post('id');
+		$username = $this->input->post('username');
+		$password = $this->input->post('password');
+		
+		$data = array(
+			'username' => $username,
+			'password' => $password
+			
+		);
+ 
+		$where = array(
+		'id' => $id
+		);
+ 
+		$this->m_data_user->update_data($where,$data,'tb_user');
+		redirect('belajar/user');
 	}
 
 
-	//session Login!!
+	function hapususer($id){
+		$where = array ('id' => $id);
+		$this->m_data_user->hapus_data($where,'tb_user');
+		redirect('belajar/user'); 
+	}
 
-	function login(){
+/*-----------------------------USER---------------------------*/
+
+	//session Login!! 
+
+	/*function login(){
 		$this->load->view('v_login'); //contoh login
 
 	}
@@ -95,16 +159,15 @@ class Belajar extends CI_Controller {
 					'status' => "m_login"
 					); 
 		$this->session->set_userdata($data_session);
-		redirect (base_url("index.php/belajar/bookmark"));
+		redirect (base_url("/belajar/bookmark"));
 		} else {
 			echo '<script>alert("Username atau Password Salah!");</script>' ;
 			
-			}
+		}
 	}
 
 	function logout(){
 		$this->session->session_destroy();
-		redirect (base_url('index.php/belajar/login/logout'));
-	}
- 
+		redirect (base_url('/belajar/login/logout'));
+	} */
 }

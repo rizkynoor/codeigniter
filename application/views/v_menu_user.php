@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Tabel Bookmark</title>
+	<title>Tabel User</title>
 	<link href="<?php echo base_url(); ?>res/css/style.css" rel="stylesheet" type="text/css" />
 </head>
 <body>
@@ -9,7 +9,7 @@
 	<div class="content">
 	<center>
 	<h1>Tabel Bookmark | Latihan crud</h1>
-	<h3>Data Tabel Bookmark</h3>
+	<h3>Data Tabel User</h3>
 		
 	<table>
 			
@@ -32,27 +32,25 @@
 		<tr>
 			<th>No.</th>
 			<th>ID</th>
-			<th>Title</th>
-			<th>Url</th>
-			<th>Description</th>
+			<th>Username</th>
+			<th>Password</th>
 			<th>Option</th>
 		</tr>
 		<?php 
 			$no = 0;
-			foreach($tb_bookmark as $u){
+			foreach($tb_user as $u){
 			$no++; ?>
 		<tr>
 			<td><?php echo $no ?></td>
 			<td><?php echo $u->id ?></td>
-			<td valign="top"><?php echo $u->title ?></td>
-			<td valign="top"><?php echo $u->url ?></td>
-			<td valign="top"><?php echo $u->description ?></td>
+			<td valign="top"><?php echo $u->username ?></td>
+			<td valign="top"><?php echo $u->password ?></td>
 			<td>
 			<a class="update">
-			<?php echo anchor('belajar/edit/'.$u->id,'Edit'); ?>
+			<?php echo anchor('belajar/edituser/'.$u->id,'Edit'); ?>
 			</a>
 			<a class="delete">
-			<?php echo anchor('belajar/hapus/'.$u->id,'Hapus'); ?>
+			<?php echo anchor('belajar/hapususer/'.$u->id,'Hapus'); ?>
 			</a>
 			</td>
 		</tr>
@@ -64,7 +62,7 @@
 	</div>
 	</div>
 </body>
-			<a class="add"	href="<?php echo base_url('/belajar/tambah'); ?>"> Tambah Data...</a>
+			<a class="add"	href="<?php echo base_url('/belajar/tambahuser'); ?>"> Tambah Data...</a>
 			<a class="$logout" href="<?php echo base_url('login/logout');?>"> Logout...</a>
 		
 </html>
