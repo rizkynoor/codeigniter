@@ -22,7 +22,7 @@ class Login extends CI_Controller{
 		$password = $this->input->post('password');
 		$where = array (
 			'username' => $username,
-			'password' => $password
+			'password' => md5($password)
 			);
 		$cek = $this->m_login->cek_login("tb_user",$where)->num_rows();
 		if ($cek > 0) {
@@ -33,7 +33,7 @@ class Login extends CI_Controller{
 		$this->session->set_userdata($data_session);
 		redirect (base_url("belajar/bookmark"));
 		} else {
-			echo '<script>alert("Username atau Password Salah!");</script>' ;
+			echo '<script>alert("Username atau Password Salah!");window.history.back();</script>' ;
 		
 		}
 	}

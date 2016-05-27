@@ -19,14 +19,17 @@
 				<td>Username</td>
 				<td>
 					<input type="hidden" name="id" value="<?php echo $u->id ?>">
-					<input type="text" name="username" value="<?php echo $u->username ?>" required>
+					<input type="text" name="username" value="<?php echo $u->username ?>" required"" readonly="readonly">
 				</td>
 			</tr>
 			<tr>
-				<td>Password</td>
-				<td><input type="text" name="password" value="<?php echo $u->password ?>" required></td>
+				<td>Password Lama</td>
+				<td><input type="password" name="password_lm"  required"" placeholder="masukkan password lama"></td>
 			</tr>
 			<tr>
+				<td>Password Baru</td>
+				<td><input type="password" name="password"  required"" placeholder="masukkan password baru"></td>
+			</tr>
 			
 			<tr>
 				<td></td>

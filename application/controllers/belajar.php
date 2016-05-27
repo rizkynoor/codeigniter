@@ -99,7 +99,7 @@ class Belajar extends CI_Controller {
 			$data = array (
 				'id' => $id,
 				'username' => $username,
-				'password' => $password );
+				'password' => md5($password) );
 		$this->m_data_user->input_data($data,'tb_user');
 		redirect('belajar/user');
 	}
@@ -113,20 +113,31 @@ class Belajar extends CI_Controller {
 	function updateuser(){
 		$id = $this->input->post('id');
 		$username = $this->input->post('username');
+		$password_lm = $this->input->post('password_lm');
 		$password = $this->input->post('password');
 		
 		$data = array(
 			'username' => $username,
-			'password' => $password
+			'password' => md5($password)
 			
 		);
  
 		$where = array(
-		'id' => $id
+		'id' => $id,
+		'password' => md5($password_lm)
 		);
  
+ 		$cek_pw = $this->m_data_user->cek_password("tb_user",$where)->num_rows(); // Cek Password lama
+		if($cek_pw > 0){
 		$this->m_data_user->update_data($where,$data,'tb_user');
-		redirect('belajar/user');
+		echo"<script>alert('Data Berhasil Dirubah!');window.location='user'</script>";
+		//redirect('home/lihat_user');
+		
+		}else{
+		echo"<script>alert('Password yang anda masukkan salah!');window.history.back();</script>";
+		}
+		/*$this->m_data_user->update_data($where,$data,'tb_user');
+		redirect('belajar/user');*/
 	}
 
 

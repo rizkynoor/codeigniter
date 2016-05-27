@@ -20,6 +20,9 @@
 			<th>
 				<li><a href="<?php echo base_url().'belajar/user' ?>">Data Tabel User</a></li>
 			</th>
+			<th>
+				<li><a href="<?php echo base_url().'login/logout' ?>">Logout</a></li>
+			</th>
 		</tr>
 		
 	</table>
@@ -30,12 +33,11 @@
 	<table>
 	
 		<tr>
-			<th>No.</th>
-			<th>ID</th>
+			<th width="2%">No.</th>
 			<th>Title</th>
 			<th>Url</th>
 			<th>Description</th>
-			<th>Option</th>
+			<th width="25%">Option</th>
 		</tr>
 		<?php 
 			$no = 0;
@@ -43,7 +45,6 @@
 			$no++; ?>
 		<tr>
 			<td><?php echo $no ?></td>
-			<td><?php echo $u->id ?></td>
 			<td valign="top"><?php echo $u->title ?></td>
 			<td valign="top"><?php echo $u->url ?></td>
 			<td valign="top"><?php echo $u->description ?></td>
@@ -65,6 +66,5 @@
 	</div>
 </body>
 			<a class="add"	href="<?php echo base_url('/belajar/tambah'); ?>"> Tambah Data...</a>
-			<a class="$logout" href="<?php echo base_url('login/logout');?>"> Logout...</a>
 		
 </html>
