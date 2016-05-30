@@ -15,8 +15,7 @@ class Belajar extends CI_Controller {
 		redirect(base_url("login"));
 	}
 }
-	
-	
+		
 
 /*-----------------------------BOOKMARK---------------------------*/
 
@@ -25,7 +24,6 @@ class Belajar extends CI_Controller {
 		$this->load->view('v_bookmark',$data);
 	}
 
-//
 	function tambah(){
 		$this->load->view('v_input'); //contoh tambah
 	}
@@ -41,6 +39,7 @@ class Belajar extends CI_Controller {
 				'title' => $title,
 				'url' => $url,
 				'description' => $description);
+
 		$this->m_data->input_data($data,'tb_bookmark');
 		redirect('belajar/bookmark');
 	}
@@ -57,18 +56,19 @@ class Belajar extends CI_Controller {
 		$url = $this->input->post('url');
 		$description = $this->input->post('description');
  
-		$data = array(
-			'title' => $title,
-			'url' => $url,
-			'description' => $description
-		);
+			$data = array(
+				'title' => $title,
+				'url' => $url,
+				'description' => $description
+			);
  
-		$where = array(
-		'id' => $id
-		);
+			$where = array(
+			'id' => $id
+			);
  
 		$this->m_data->update_data($where,$data,'tb_bookmark');
-		redirect('belajar/bookmark');
+		echo"<script>alert('Data Berhasil Dirubah!');window.location='bookmark'</script>";
+		//redirect('belajar/bookmark');
 	}
 
 
@@ -76,6 +76,12 @@ class Belajar extends CI_Controller {
 		$where = array ('id' => $id);
 		$this->m_data->hapus_data($where,'tb_bookmark');
 		redirect('belajar/bookmark'); 
+	}
+
+	function view_b($id){
+		$where = array ('id' => $id);
+		$data['tb_bookmark'] = $this->m_data->edit_data($where,'tb_bookmark')->result();
+		$this->load->view('v_view_b',$data);
 	}
 /*-----------------------------BOOKMARK---------------------------*/
 						//end
@@ -100,6 +106,7 @@ class Belajar extends CI_Controller {
 				'id' => $id,
 				'username' => $username,
 				'password' => md5($password) );
+
 		$this->m_data_user->input_data($data,'tb_user');
 		redirect('belajar/user');
 	}
@@ -116,16 +123,16 @@ class Belajar extends CI_Controller {
 		$password_lm = $this->input->post('password_lm');
 		$password = $this->input->post('password');
 		
-		$data = array(
-			'username' => $username,
-			'password' => md5($password)
-			
-		);
- 
-		$where = array(
-		'id' => $id,
-		'password' => md5($password_lm)
-		);
+			$data = array(
+				'username' => $username,
+				'password' => md5($password)
+				
+			);
+	 
+			$where = array(
+			'id' => $id,
+			'password' => md5($password_lm)
+			);
  
  		$cek_pw = $this->m_data_user->cek_password("tb_user",$where)->num_rows(); // Cek Password lama
 		if($cek_pw > 0){
@@ -134,8 +141,8 @@ class Belajar extends CI_Controller {
 		//redirect('home/lihat_user');
 		
 		}else{
-		echo"<script>alert('Password yang anda masukkan salah!');window.history.back();</script>";
-		}
+			echo"<script>alert('Password yang anda masukkan salah!');window.history.back();</script>";
+			}
 		/*$this->m_data_user->update_data($where,$data,'tb_user');
 		redirect('belajar/user');*/
 	}

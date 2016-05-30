@@ -9,12 +9,12 @@ class Login extends CI_Controller{
 		$this->load->library('session');
 	
 	}
+	
 	function index(){
 		$this->load->view('v_login'); //contoh login
 		if($this->session->userdata('status') == "m_login"){
 		redirect(base_url("belajar/bookmark"));
-	}
-
+			}
 	}
 
 	function aksi_login(){
@@ -34,8 +34,7 @@ class Login extends CI_Controller{
 		redirect (base_url("belajar/bookmark"));
 		} else {
 			echo '<script>alert("Username atau Password Salah!");window.history.back();</script>' ;
-		
-		}
+			}
 	}
 
 	function logout(){
