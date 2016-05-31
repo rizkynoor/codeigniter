@@ -13,12 +13,54 @@ class Belajar extends CI_Controller {
 		
 		if($this->session->userdata('status') != "m_login"){
 		redirect(base_url("login"));
+		}
 	}
-}
+	
+ 
+     function bookmark()
+    {
+    	$data['tb_bookmark'] = $this->m_data->ambil_data()->result();
+		$this->load->view('v_header');
+		$this->load->view('v_bookmark');
 		
+    }
+/* 
+     function ambil_data()
+    {
+        $post = $this->input->post();
+    	$result = $this->m_data->ambil_data($post)->result_array();
+		print json_encode(array("Result"=>"OK","Records" => $result));
+    }
+ 
+     function input_data()
+    {
+        $post = $this->input->post();
+        $result = $this->m_data->input_data($post); 
+        if($result){
+            print json_encode(array("Result"=>"OK", "Records" => $post));
+        }
+    }
+ 
+     function edit_data()
+    {
+        $post = $this->input->post();
+        $id = $post['id'];
+        $result = $this->m_data->edit_data(array('id' => $id), $post); 
+        if($result){
+            print json_encode(array("Result"=>"OK"));
+        }
+    }
+ 
+     function hapus_data()
+    {
+        $post = $this->input->post();
+        $result = $this->m_data->hapus_data($post);
+        if($result){
+            print json_encode(array("Result"=>"OK"));
+        }
+    } */
 
-/*-----------------------------BOOKMARK---------------------------*/
-
+/*-----------------------------BOOKMARK---------------------------*/ /*
 	 function bookmark(){
 		$data['tb_bookmark'] = $this->m_data->ambil_data()->result(); //contoh 'user'
 		$this->load->view('v_bookmark',$data);
@@ -82,7 +124,7 @@ class Belajar extends CI_Controller {
 		$where = array ('id' => $id);
 		$data['tb_bookmark'] = $this->m_data->edit_data($where,'tb_bookmark')->result();
 		$this->load->view('v_view_b',$data);
-	}
+	} */
 /*-----------------------------BOOKMARK---------------------------*/
 						//end
 
@@ -90,6 +132,7 @@ class Belajar extends CI_Controller {
 
 	 function user(){
 		$data['tb_user'] = $this->m_data_user->tampil_data()->result(); //contoh 'user'
+		$this->load->view('v_header');
 		$this->load->view('v_menu_user',$data);
 	}
 

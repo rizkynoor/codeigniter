@@ -26,5 +26,26 @@ class M_data extends CI_Model{
 	function hapus_data($where,$table){
 		$this->db->where($where);
 		$this->db->delete($table);
+	} 
+} 
+/*
+	 function grid($params)
+	{
+		return $this->db->get('tb_bookmark');
 	}
-}
+ 
+	 function add($data)
+	{
+		return $this->db->insert('tb_bookmark', $data);
+	}
+ 
+	 function edit($key, $data)
+	{
+		return $this->db->update('tb_bookmark', $data, $key);
+	}
+ 
+	 function delete($key)
+	{
+		return $this->db->delete('tb_bookmark',$key);
+	}
+} */
