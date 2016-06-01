@@ -25,7 +25,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input class="button" type="submit" value="Tambah"></td>
+						<td><input id="btnTambahB" class="button" type="submit" value="Tambah"></td>
 					</tr>
 				</table>
 			</div>

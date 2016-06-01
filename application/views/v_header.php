@@ -15,7 +15,7 @@
 
 
 <!-- Theme skin -->
-<link href="skins/default.css" rel="stylesheet" />
+<link href="<?php echo base_url();?>skins/default.css" rel="stylesheet" />
 
 <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
 <!--[if lt IE 9]>
@@ -24,6 +24,7 @@
 
 </head>
   <body>
+    <div id="wrapper">
   <!-- start header -->
   <header>
         <div class="navbar navbar-default navbar-static-top">
@@ -38,7 +39,7 @@
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">
-                        <li class="active"><a href="index.html">Home</a></li>
+                        <li class="active"><a href="#">Home</a></li>
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle " data-toggle="dropdown" data-hover="dropdown" data-delay="0" data-close-others="false">Data Tabel <b class=" icon-angle-down"></b></a>
                             <ul class="dropdown-menu">
@@ -55,6 +56,7 @@
             </div>
         </div>
   </header>
+    </div>
          <a href="#" class="scrollup"><i class="fa fa-angle-up active"></i></a>
 <!-- javascript
     ================================================== -->

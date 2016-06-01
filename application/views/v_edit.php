@@ -29,7 +29,7 @@
 					</tr>
 					<tr>
 						<td></td>
-						<td><input class="button" type="submit" value="Simpan"></td>
+						<td><input id="btnEditB"class="button" type="submit" value="Simpan"></td>
 					</tr>
 				</div>	
 			</center>

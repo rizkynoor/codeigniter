@@ -7,6 +7,7 @@ class Belajar extends CI_Controller {
 		parent::__construct();		
 		$this->load->model('m_data');
 		$this->load->model('m_data_user');
+		$this->load->model('json_model');
 		//$this->load->model('m_login');
 		$this->load->helper('url'); //tes
 		$this->load->library('session');
@@ -16,15 +17,14 @@ class Belajar extends CI_Controller {
 		}
 	}
 	
- 
+
      function bookmark()
     {
     	$data['tb_bookmark'] = $this->m_data->ambil_data()->result();
 		$this->load->view('v_header');
 		$this->load->view('v_bookmark');
-		
     }
-/* 
+ 
      function ambil_data()
     {
         $post = $this->input->post();
@@ -35,7 +35,7 @@ class Belajar extends CI_Controller {
      function input_data()
     {
         $post = $this->input->post();
-        $result = $this->m_data->input_data($post); 
+        $result = $this->m_data->input_data($post, 'tb_bookmark'); 
         if($result){
             print json_encode(array("Result"=>"OK", "Records" => $post));
         }
@@ -58,7 +58,7 @@ class Belajar extends CI_Controller {
         if($result){
             print json_encode(array("Result"=>"OK"));
         }
-    } */
+    }  
 
 /*-----------------------------BOOKMARK---------------------------*/ /*
 	 function bookmark(){
