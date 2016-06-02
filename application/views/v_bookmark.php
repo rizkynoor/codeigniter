@@ -14,29 +14,14 @@
     <link href="<?php echo base_url();?>assets/jtable/themes/lightcolor/blue/jtable.css" rel="stylesheet" type="text/css" />
     <!-- css Jtable -->
     <script src='<?php echo base_url();?>assets/jtable/jquery.jtable.min.js'></script>
- 
+
+  </head>
+ 	
     <script type="text/javascript">
         $(document).ready(function () {
-        	$("#btnTambahB").click(function(){
-            	var title = $("#title").val();
-				var url = $("#url").val();
-		   	    var description = $("#description").val();
-	                $.ajax({
-	                    url : "<?php base_url() ?>/belajar/tambah_aksi",
-	                    type "post"; 
-	                    beforeSend: function(){
-	                                        $("#data").html("Loading...");
-	                                    },
-	                         data: "title="+title+"&url="+url+"&description="+description,
-	                          success:    function(html){
-	                        				   $("#notifikasi").html('Data berhasil disimpan');
-							                   $("#data").load("belajar/bookmark #data");
-							                   $("#notifikasi").fadeIn(2500);
-							                   $("#notifikasi").fadeOut(2500);  
-							                   $("#btnTambahB").hide();
-							                   $("#tombolTambah").show();
-							                   },      
-	                
+
+   
+        	       
         
           $('#dataDrid').jtable({
                 title: 'Tabel Bookmark',
@@ -45,7 +30,7 @@
 	            sorting: true, //Enable sorting
 	            defaultSorting: 'Name ASC', //Set default sorting
                 actions: {
-                    listAction: '/ci30/belajar/bookmarkdata', // link untuk proses load data grid
+                    listAction: '/ci30/belajar/bookmark', // link untuk proses load data grid
                     createAction: '/ci30/belajar/input_data', // link untuk proses tambah data
                     updateAction: '/ci30/belajar/edit_data', // link untuk proses update data
                     deleteAction: '/ci30/belajar/hapus_data' // link untuk proses hapus data
@@ -77,8 +62,7 @@
                     //}, 
                 } 
             });
-		});   	            
-	   });
+		
 
             // load data saat pertama kali
             $('#dataDrid').jtable('load');
@@ -86,11 +70,11 @@
         });
     </script>
  
-  </head>
+  
   <body>
   	<center>
   		<h3>Data Tabel Bookmark</h3>
-  				<table>		
+  				<!--<table>		
 					<tr>
 						<th>
 							<li><a href="<?php echo base_url().'belajar/bookmark' ?>">Data Tabel Bookmark</a></li>
@@ -102,7 +86,27 @@
 							<li><a href="<?php echo base_url().'login/logout' ?>">Logout</a></li>
 						</th>
 					</tr>
-				</table>
+				</table>-->
+				
+			<!--	<script type="text/javascript">
+				$(document).ready(function () {
+				$("#btnTambahB").click(function(){
+            	var title 		= $("#title").val();
+				var url 		= $("#url").val();
+		   	    var description = $("#description").val();
+		   	    var data = 'title=' + title + '&url=' + url + '&description=' + description ;
+	                $.ajax({
+	                    url : "<?php base_url() ?>/belajar/tambah_aksi",
+	                    type "post",
+	                    data : data,
+	                    success:    function(){
+							                   $("#bookmark").load("belajar/bookmark #data");
+							                   },      
+			         });   	            
+			   }); 
+			   }); 
+				</script> -->
+		
 	
 	<!-- element yang kita butuhkan -->
     <div id='dataDrid' style='width:50%'></div>

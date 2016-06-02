@@ -23,12 +23,20 @@ class Belajar extends CI_Controller {
     	$data['tb_bookmark'] = $this->m_data->ambil_data()->result();
 		$this->load->view('v_header');
 		$this->load->view('v_bookmark');
+
+		// $encode_data = json_encode($data);
+		// echo $encode_data;
+
+		// $decode_data = json_decode($data);
+		// print_r($decode_data);
+		//echo  json_encode($data);
     }
  
      function ambil_data()
     {
         $post = $this->input->post();
     	$result = $this->m_data->ambil_data($post)->result_array();
+    	echo  json_encode($data);
 		print json_encode(array("Result"=>"OK","Records" => $result));
     }
  
