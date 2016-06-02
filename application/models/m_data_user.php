@@ -1,7 +1,28 @@
 <?php 
  
 class M_data_user extends CI_Model{
-	function tampil_data(){
+
+	public function grid($params)
+	{
+		return $this->db->get('tb_user');
+	}
+ 
+	public function add($data)
+	{
+		return $this->db->insert('tb_user', $data);
+	}
+ 
+	public function edit($key, $data)
+	{
+		return $this->db->update('tb_user', $data, $key);
+	}
+ 
+	public function delete($key)
+	{
+		return $this->db->delete('tb_user',$key);
+	}
+	
+/*	function tampil_data(){
 		return $this->db->get('tb_user');
 	}
 
@@ -25,5 +46,5 @@ class M_data_user extends CI_Model{
 
 	function cek_password($table,$where){
 		return $this->db->get_where($table,$where);
-	}
+	} */
 }

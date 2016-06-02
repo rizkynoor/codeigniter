@@ -1,14 +1,35 @@
 <?php 
 
 class M_data extends CI_Model{
+
+	public function grid($params)
+	{
+		return $this->db->get('tb_bookmark');
+	}
+ 
+	public function add($data)
+	{
+		return $this->db->insert('tb_bookmark', $data);
+	}
+ 
+	public function edit($key, $data)
+	{
+		return $this->db->update('tb_bookmark', $data, $key);
+	}
+ 
+	public function delete($key)
+	{
+		return $this->db->delete('tb_bookmark',$key);
+	}
+}
 	
-	function ambil_data(){
+/*	function ambil_data(){
 		return $this->db->get('tb_bookmark'); //contoh 'user'
 		/*syntax $this->db->get() 
 		di gunakan untuk mengambil data dari database. 
 		dan nama table yang ingin di ambil datanya 
 		letakkan dalam parameternya */
-	}
+/*	}
 
 	function input_data($data,$table){
 		$this->db->insert($table,$data);
@@ -27,7 +48,7 @@ class M_data extends CI_Model{
 		$this->db->where($where);
 		$this->db->delete($table);
 	} 
-} 
+} */
 /*
 	 function grid($params)
 	{

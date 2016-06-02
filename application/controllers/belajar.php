@@ -5,8 +5,8 @@ class Belajar extends CI_Controller {
 	
 	function __construct(){
 		parent::__construct();		
-		$this->load->model('m_data');
-		$this->load->model('m_data_user');
+		$this->load->model("m_data", 'get_db');
+		$this->load->model("m_data_user",'get_db_u');
 		$this->load->model('json_model');
 		//$this->load->model('m_login');
 		$this->load->helper('url'); //tes
@@ -17,15 +17,117 @@ class Belajar extends CI_Controller {
 		}
 	}
 	
-
-     function bookmark()
+	//-------Tes Bookmark--------//
+	public function bookmark()
     {
-    	$data['tb_bookmark'] = $this->m_data->ambil_data()->result();
+    	$this->load->view('v_header');
+        $this->load->view('v_bookmark');
+    }
+
+    public function grid()
+    {
+        $post = $this->input->post();
+    	$result = $this->get_db->grid($post)->result_array();
+		print json_encode(array("Result"=>"OK","Records" => $result));
+    }
+
+    public function add()
+    {
+        $post = $this->input->post();
+        $result = $this->get_db->add($post); 
+        if($result){
+            print json_encode(array("Result"=>"OK", "Records" => $post));
+        }
+    }
+
+    public function edit()
+    {
+        $post = $this->input->post();
+        $id = $post['id'];
+        $result = $this->get_db->edit(array('id' => $id), $post); 
+        if($result){
+            print json_encode(array("Result"=>"OK"));
+        }
+    }
+
+    public function delete()
+    {
+        $post = $this->input->post();
+        $result = $this->get_db->delete($post);
+        if($result){
+            print json_encode(array("Result"=>"OK"));
+        }
+    }
+	//------end Tes------//
+
+	//-------------Tes User---------------//
+
+    public function user()
+    {
+    	$this->load->view('v_header');
+        $this->load->view('v_menu_user');
+    }
+
+    public function griduser()
+    {
+        $post = $this->input->post();
+    	$result = $this->get_db_u->grid($post)->result_array();
+		print json_encode(array("Result"=>"OK","Records" => $result));
+    }
+
+    public function adduser()
+    {
+        $post = $this->input->post();
+        $result = $this->get_db_u->add($post); 
+        if($result){
+            print json_encode(array("Result"=>"OK", "Records" => $post));
+
+  //       $username = $this->input->post('username');
+		// $password = $this->input->post('password');
+			
+		// 	$data = array (
+		// 		'id' => $id,
+		// 		'username' => $username,
+		// 		'password' => md5($password) );
+
+		// $this->m_data_user->input_data($data,'tb_user');
+		// redirect('belajar/user');
+        }
+    }
+
+    public function edituser()
+    {
+        $post = $this->input->post();
+        $id = $post['id'];
+        $result = $this->get_db_u->edit(array('id' => $id), $post); 
+        if($result){
+            print json_encode(array("Result"=>"OK"));
+        }
+    }
+
+    public function deleteuser()
+    {
+        $post = $this->input->post();
+        $result = $this->get_db_u->delete($post);
+        if($result){
+            print json_encode(array("Result"=>"OK"));
+        }
+    }
+
+	//-------------end Tes user--------------//
+
+//-------------bookmark last---------//
+
+/* 14:07 02-06-2016     function bookmark()
+    {
+    	$post = $data['tb_bookmark'] = $this->m_data->ambil_data()->result();
 		$this->load->view('v_header');
 		$this->load->view('v_bookmark');
 
-		// $encode_data = json_encode($data);
-		// echo $encode_data;
+		$result = $this->m_data->ambil_data($post)->result_array();
+		print json_encode(array("Result"=>"OK","Records" => $result));
+		 // $encode_data = json_encode($data);
+		 // echo $encode_data;
 
 		// $decode_data = json_decode($data);
 		// print_r($decode_data);
@@ -66,11 +168,12 @@ class Belajar extends CI_Controller {
         if($result){
             print json_encode(array("Result"=>"OK"));
         }
-    }  
+    }   */
 
-/*-----------------------------BOOKMARK---------------------------*/ /*
+/*-----------------------------BOOKMARK 14:07 02-06-2016---------------------------*/ /*
 	 function bookmark(){
 		$data['tb_bookmark'] = $this->m_data->ambil_data()->result(); //contoh 'user'
+		$this->load->view('v_header');
 		$this->load->view('v_bookmark',$data);
 	}
 
@@ -132,11 +235,12 @@ class Belajar extends CI_Controller {
 		$where = array ('id' => $id);
 		$data['tb_bookmark'] = $this->m_data->edit_data($where,'tb_bookmark')->result();
 		$this->load->view('v_view_b',$data);
-	} */
+	} 
+ */
 /*-----------------------------BOOKMARK---------------------------*/
 						//end
 
-/*-----------------------------USER---------------------------*/
+/*-----------------------------USER 14:07 02-06-2016---------------------------*//*
 
 	 function user(){
 		$data['tb_user'] = $this->m_data_user->tampil_data()->result(); //contoh 'user'
@@ -196,14 +300,14 @@ class Belajar extends CI_Controller {
 			}
 		/*$this->m_data_user->update_data($where,$data,'tb_user');
 		redirect('belajar/user');*/
-	}
+/*	}
 
 
 	function hapususer($id){
 		$where = array ('id' => $id);
 		$this->m_data_user->hapus_data($where,'tb_user');
 		redirect('belajar/user'); 
-	}
+	}   14:07 02-06-2016 */ 
 
 /*-----------------------------USER---------------------------*/
 
