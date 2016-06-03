@@ -35,7 +35,7 @@
                         <span class="icon-bar"></span>
                         <span class="icon-bar"></span>
                     </button>
-                    <a class="navbar-brand" href="#"><span>C</span>rud-CI</a>
+                    <a class="navbar-brand" href="<?php echo base_url().'belajar/index' ?>"><span>C</span>rud-CI</a>
                 </div>
                 <div class="navbar-collapse collapse ">
                     <ul class="nav navbar-nav">

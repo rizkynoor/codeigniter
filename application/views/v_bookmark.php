@@ -96,7 +96,7 @@
              });
         
            // load data saat pertama kali
-    $('#dataDrid').jtable('load', {});
+    $('#dataDrid').jtable('load');
  
     });
 
@@ -108,7 +108,7 @@
     <center>
       <h3>Data Tabel Bookmark</h3>
 
-<div id='dataDrid' style='width:50%'></div>
+<div id='dataDrid' style='width:70%'></div>
     </center>
   </body>
 </html>

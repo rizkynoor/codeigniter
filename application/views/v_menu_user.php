@@ -11,7 +11,7 @@
     <link href='<?php echo base_url();?>assets/jquery-ui/jquery-ui.css' rel="stylesheet">
  
     <!-- js Jtable. -->
-    <link href="<?php echo base_url();?>assets/jtable/themes/lightcolor/red/jtable.css" rel="stylesheet" type="text/css" />
+    <link href="<?php echo base_url();?>assets/jtable/themes/metro/red/jtable.css" rel="stylesheet" type="text/css" />
     <!-- css Jtable -->
     <script src='<?php echo base_url();?>assets/jtable/jquery.jtable.min.js'></script>
     
@@ -20,7 +20,7 @@
                    
         
             $('#dataDrid').jtable({
-                 title: 'Tabel Bookmark',
+                 title: 'Tabel User',
                  paging: true, //Enable paging
                  pageSize: 10, //Set page size (default: 10)
                  sorting: true, //Enable sorting
@@ -31,6 +31,22 @@
                        updateAction: '/ci30/belajar/edituser', // link untuk proses update data
                        deleteAction: '/ci30/belajar/deleteuser' // link untuk proses hapus data
                    },
+
+             toolbar: {
+                        items: [{
+                            icon: '/images/excel.png',
+                            text: 'Export to Excel',
+                            click: function () {
+                                //perform your custom job...
+                            }
+                        },{
+                            icon: '/images/pdf.png',
+                            text: 'Export to Pdf',
+                            click: function () {
+                                //perform your custom job...
+                            }
+                        }]
+                    },
                
              fields: { // field digunakan sebagai grid, form tambah data dan edit data
                     no: {
@@ -58,7 +74,9 @@
                     	  title: 'Password',
                           create: true,
                           edit: true,
-                          list: false
+                          list: false,
+                          type: 'password'
+                          
 
                           
                      },
@@ -86,7 +104,7 @@
 
   <body>
     <center>
-      <h3>Data Tabel Bookmark</h3>
+      <h3>Data Tabel User</h3>
 
 <div id='dataDrid' style='width:50%'></div>
     </center>

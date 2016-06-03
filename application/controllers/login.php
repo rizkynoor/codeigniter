@@ -31,7 +31,7 @@ class Login extends CI_Controller{
 					'status' => "m_login"
 					); 
 		$this->session->set_userdata($data_session);
-		redirect (base_url("belajar/bookmark"));
+		redirect (base_url("belajar/index"));
 		} else {
 			echo '<script>alert("Username atau Password Salah!");window.history.back();</script>' ;
 			}

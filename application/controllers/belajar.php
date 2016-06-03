@@ -16,6 +16,12 @@ class Belajar extends CI_Controller {
 		redirect(base_url("login"));
 		}
 	}
+
+	function index()
+	{
+		$this->load->view('v_header');
+		$this->load->view('v_index');
+	}
 	
 	//-------Tes Bookmark--------//
 	public function bookmark()
