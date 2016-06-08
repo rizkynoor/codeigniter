@@ -32,21 +32,6 @@
                        deleteAction: '/ci30/belajar/deleteuser' // link untuk proses hapus data
                    },
 
-             toolbar: {
-                        items: [{
-                            icon: '/images/excel.png',
-                            text: 'Export to Excel',
-                            click: function () {
-                                //perform your custom job...
-                            }
-                        },{
-                            icon: '/images/pdf.png',
-                            text: 'Export to Pdf',
-                            click: function () {
-                                //perform your custom job...
-                            }
-                        }]
-                    },
                
              fields: { // field digunakan sebagai grid, form tambah data dan edit data
                     no: {

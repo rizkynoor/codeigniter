@@ -4,11 +4,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 class Belajar extends CI_Controller {
 	
 	function __construct(){
-		parent::__construct();		
-		$this->load->model("m_data", 'get_db');
-		$this->load->model("m_data_user",'get_db_u');
-		$this->load->model('json_model');
-		//$this->load->model('m_login');
+		parent::__construct();	
+		$this->load->model('m_data','tb_bookmark');
+
+		
+		 //----JTable 08/06/2016-----//	
+		// $this->load->model("m_data", 'get_db');
+		// $this->load->model("m_data_user",'get_db_u');
+		// $this->load->model('json_model');
+
+
+		//$this->load->model('m_login');//lain 
 		$this->load->helper('url'); //tes
 		$this->load->library('session');
 		
@@ -16,6 +22,89 @@ class Belajar extends CI_Controller {
 		redirect(base_url("login"));
 		}
 	}
+
+	public function bookmark()
+    {
+        $this->load->helper('url');
+        $this->load->view('v_header');
+        $this->load->view('v_bookmark');
+    }
+ 
+    public function ajax_list()
+    {
+        $list = $this->tb_bookmark->get_datatables();
+        $data = array();
+        $no = $_POST['start'];
+        foreach ($list as $u) {
+            $no++;
+            $row = array();
+            $row[] = $u->firstName;
+            $row[] = $u->lastName;
+            $row[] = $u->gender;
+            $row[] = $u->address;
+            $row[] = $u->dob;
+ 
+            //add html for action
+            $row[] = '<a class="btn btn-sm btn-primary" href="javascript:void(0)" title="Edit" onclick="edit_person('."'".$u->id."'".')"><i class="glyphicon glyphicon-pencil"></i> Edit</a>
+                  <a class="btn btn-sm btn-danger" href="javascript:void(0)" title="Hapus" onclick="delete_person('."'".$u->id."'".')"><i class="glyphicon glyphicon-trash"></i> Delete</a>';
+ 
+            $data[] = $row;
+        }
+ 
+        $output = array(
+                        "draw" => $_POST['draw'],
+                        "recordsTotal" => $this->tb_bookmark->count_all(),
+                        "recordsFiltered" => $this->tb_bookmark->count_filtered(),
+                        "data" => $data,
+                );
+        //output to json format
+        echo json_encode($output);
+    }
+ 
+    public function ajax_edit($id)
+    {
+        $data = $this->person->get_by_id($id);
+        echo json_encode($data);
+    }
+ 
+    public function ajax_add()
+    {
+        $data = array(
+                'firstName' => $this->input->post('firstName'),
+                'lastName' => $this->input->post('lastName'),
+                'gender' => $this->input->post('gender'),
+                'address' => $this->input->post('address'),
+                'dob' => $this->input->post('dob'),
+            );
+        $insert = $this->person->save($data);
+        echo json_encode(array("status" => TRUE));
+    }
+ 
+    public function ajax_update()
+    {
+        $data = array(
+                'firstName' => $this->input->post('firstName'),
+                'lastName' => $this->input->post('lastName'),
+                'gender' => $this->input->post('gender'),
+                'address' => $this->input->post('address'),
+                'dob' => $this->input->post('dob'),
+            );
+        $this->person->update(array('id' => $this->input->post('id')), $data);
+        echo json_encode(array("status" => TRUE));
+    }
+ 
+    public function ajax_delete($id)
+    {
+        $this->person->delete_by_id($id);
+        echo json_encode(array("status" => TRUE));
+    }
+ 
+}
+
+
+
+	//------ JTable 08/06/2016--------------// 
+	/*
 
 	function index()
 	{
@@ -63,11 +152,11 @@ class Belajar extends CI_Controller {
         if($result){
             print json_encode(array("Result"=>"OK"));
         }
-    }
+    } */
 	//------end Tes------//
 
-	//-------------Tes User---------------//
-
+	//-------------Tes User JTable 08/06/2016---------------//
+/*
     public function user()
     {
     	$this->load->view('v_header');
@@ -118,7 +207,7 @@ class Belajar extends CI_Controller {
         if($result){
             print json_encode(array("Result"=>"OK"));
         }
-    }
+    } */
 
 	//-------------end Tes user--------------//
 
@@ -349,4 +438,4 @@ class Belajar extends CI_Controller {
 		$this->session->session_destroy();
 		redirect (base_url('/belajar/login/logout'));
 	} */
-}
+//}
